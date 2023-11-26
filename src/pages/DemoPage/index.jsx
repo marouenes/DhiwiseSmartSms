@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
@@ -7,9 +7,26 @@ import DemoPageColumnexplainone from "components/DemoPageColumnexplainone";
 import DemoPageRowtail from "components/DemoPageRowtail";
 import DemoPageStatusbar from "components/DemoPageStatusbar";
 import DemoPageUserbar from "components/DemoPageUserbar";
+import apiCalls from "apiCalls";
+import MobileView from "components/new/MobileView";
 
 const DemoPagePage = () => {
+  const [typedMessage, setTypedMessage] = useState("");
+  const [msgSent, setMsgSent] = useState(false);
   const navigate = useNavigate();
+
+  const handleNewMessage = async (e) => {
+    e.preventDefault();
+    
+    const request ={
+      conversationId: "a28f2790-299d-46bc-a325-2260d48f5c71",
+      messageContent: typedMessage
+    }
+
+    const response = await apiCalls.sendMessage(request);
+    console.log(response);
+    setMsgSent(true);
+  };
 
   return (
     <>
@@ -28,54 +45,10 @@ const DemoPagePage = () => {
             >
               Follow up
             </Button>
-            <div className="flex md:flex-col flex-row font-poppins md:gap-10 items-start justify-between w-full">
-              <div className="bg-white-A700 flex md:flex-1 flex-col items-center justify-start rounded-[14px] w-[51%] md:w-full">
-                <DemoPageStatusbar className="bg-gray-200 flex flex-row h-[59px] md:h-auto items-end justify-between w-[399px] sm:w-full" />
-                <DemoPageUserbar className="flex sm:flex-col flex-row sm:gap-5 h-[34px] md:h-auto items-center justify-center w-[399px] sm:w-full" />
-                <Text
-                  className="text-[11px] text-black-900 text-center tracking-[0.07px] uppercase"
-                  size="txtPoppinsRegular11"
-                >
-                  +123 123 123{" "}
-                </Text>
-                <div className="flex flex-col gap-2.5 items-center justify-start mt-3.5 p-2.5 w-[367px]">
-                  <div className="flex flex-col items-center justify-end w-[366px]">
-                    <div className="bg-blue-A200 flex flex-col h-[100px] md:h-auto items-end justify-start px-3 py-1.5 rounded-[18px] w-[242px]">
-                      <Text
-                        className="leading-[22.00px] max-w-[218px] md:max-w-full text-[17px] text-white-A700 tracking-[-0.41px]"
-                        size="txtPoppinsRegular17"
-                      >
-                        Hello Telecompany GPT, Can you help me survive in the
-                        wilderness without internet?
-                      </Text>
-                    </div>
-                  </div>
-                  <div className="flex flex-col items-start justify-end pl-2.5 w-full">
-                    <DemoPageRowtail className="flex flex-row items-end justify-start w-[255px]" />
-                  </div>
-                </div>
-                <div className="flex flex-row gap-[18px] h-[107px] md:h-auto items-center justify-start mt-[180px] p-2.5 w-[399px] sm:w-full">
-                  <div className="flex flex-col h-[43px] md:h-auto items-start justify-center w-[285px] sm:w-full">
-                    <Input
-                      name="type"
-                      placeholder="SMS"
-                      className="md:h-auto p-0 placeholder:text-gray-800_01 sm:h-auto text-[17px] text-left tracking-[-0.41px] w-full"
-                      wrapClassName="outline outline-[0.5px] outline-black-900_7e w-[99%]"
-                    ></Input>
-                  </div>
-                  <Button
-                    className="cursor-pointer min-w-[58px] text-[17px] text-center tracking-[-0.41px]"
-                    shape="round"
-                    color="indigo_A100"
-                    size="sm"
-                    variant="outline"
-                  >
-                    Send
-                  </Button>
-                </div>
-              </div>
-              <DemoPageColumnexplainone className="flex flex-col font-jost md:gap-10 gap-[103px] items-start justify-start md:mt-0 mt-16 w-auto" />
-            </div>
+
+            <MobileView/>
+            
+            
           </div>
         </div>
         <Button

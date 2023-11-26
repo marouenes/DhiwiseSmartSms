@@ -3,9 +3,19 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Button, Img, Line, Text } from "components";
+import apiCalls from "apiCalls";
 
 const HomepagePage = () => {
   const navigate = useNavigate();
+
+  const handleNewConversation = async (e) => {
+    e.preventDefault();
+    navigate("/demopage")
+    
+    
+    const response = await apiCalls.createConversation();
+    console.log(response);
+  };
 
   return (
     <>
@@ -46,7 +56,7 @@ const HomepagePage = () => {
               </Button>
               <Button
                 className="common-pointer bg-transparent cursor-pointer font-bold leading-[normal] min-w-[183px] text-center text-white-A700 text-xl"
-                onClick={() => navigate("/demopage")}
+                onClick={handleNewConversation}
                 size="xs"
               >
                 Live the experience
