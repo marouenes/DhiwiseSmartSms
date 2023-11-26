@@ -57,7 +57,7 @@ function MobileView() {
     <div className="flex md:flex-col flex-row font-poppins md:gap-10 items-start justify-between w-full md:h-full">
       <div className="bg-white-A700 flex md:flex-1 flex-col items-center justify-start rounded-[14px] w-[51%] md:w-full">
         <DemoPageStatusbar className="bg-gray-200 flex flex-row h-[59px] md:h-auto items-end justify-between w-[399px] sm:w-full" />
-        <DemoPageUserbar className="flex sm:flex-col flex-row sm:gap-5 h-[34px] md:h-auto items-center justify-center w-[399px] sm:w-full" />
+        <DemoPageUserbar className="flex flex-row sm:gap-5 h-[34px] md:h-auto items-center justify-center w-[399px] sm:w-full" />
         <Text
           className="text-[11px] text-black-900 text-center tracking-[0.07px] uppercase"
           size="txtPoppinsRegular11"
